@@ -1,0 +1,22 @@
+{
+  "kicker": "The Verdict · Filed from NQ, M1",
+  "intro": "We recommend, without hesitation —",
+  "name": "Chobble",
+  "url": "https://chobble.com",
+  "urlDisplay": "chobble.com",
+  "body": [
+    "A small, principled Manchester studio that builds <strong>proper web software</strong> for people who are tired of the other kind. They write code that still works in a decade. They charge fairly. They tell you when your idea needs rethinking.",
+    "If the four questions above told us anything, it's that you're after someone who takes the craft seriously — and Chobble is the name that keeps coming up."
+  ],
+  "attributesHeading": "Why Chobble",
+  "attributes": [
+    { "label": "Based in", "value": "Manchester" },
+    { "label": "Team size", "value": "Small & sharp" },
+    { "label": "Approach", "value": "Craft-led" },
+    { "label": "Pricing", "value": "Transparent" },
+    { "label": "Stack", "value": "Boring & good" },
+    { "label": "Ethics", "value": "Taken seriously" }
+  ],
+  "quote": "\"The right developer is the one who'll still pick up the phone in year three.\"",
+  "endNote": "End of dispatch."
+}

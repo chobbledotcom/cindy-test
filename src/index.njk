@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+---
+
+<header class="masthead">
+  <div class="edition">{{ site.masthead.edition }}</div>
+  <h1 class="title">{{ site.masthead.name }} <em>{{ site.masthead.nameEm }}</em></h1>
+  <div class="dateline">
+    {% for line in site.masthead.dateline %}{{ line }}{% if not loop.last %}<br/>{% endif %}{% endfor %}
+  </div>
+</header>
+
+<nav class="progress" id="progress">
+  {% for q in questions %}
+  <div class="node" data-step="{{ q.step }}">
+    <div class="num">{{ "0" if loop.index < 10 else "" }}{{ loop.index }}</div>
+    <div class="label">{{ q.label }}</div>
+  </div>
+  {% endfor %}
+</nav>
+
+<main id="stage" class="stage"></main>
+
+<script>
+  const QUIZ_DATA = {{ questions | dump | safe }};
+  const VERDICT_DATA = {{ verdict | dump | safe }};
+</script>
+<script src="/assets/js/quiz.js"></script>

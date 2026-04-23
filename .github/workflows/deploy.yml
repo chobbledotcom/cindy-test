@@ -1,0 +1,50 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy to Bunny
+        uses: R-J-dev/bunny-deploy@v3.0.0
+        with:
+          # Storage zone credentials
+          storage-zone-password: ${{ secrets.BUNNY_STORAGE_KEY }}
+          storage-zone-name: ${{ secrets.BUNNY_STORAGE_NAME }}
+          # Change this to your region's endpoint if not using the main EU zone:
+          # https://ny.storage.bunnycdn.com  (New York)
+          # https://la.storage.bunnycdn.com  (Los Angeles)
+          # https://sg.storage.bunnycdn.com  (Singapore)
+          storage-endpoint: https://storage.bunnycdn.com
+          directory-to-upload: ${{ github.workspace }}/_site
+          concurrency: 50
+          enable-delete-action: true
+          # Cache purge — BUNNY_STORAGE_KEY may need to be your account API key
+          # (found at dash.bunny.net → Account → API Key) for purging to work
+          enable-purge-pull-zone: true
+          access-key: ${{ secrets.BUNNY_STORAGE_KEY }}
+          pull-zone-id: ${{ secrets.BUNNY_PULL_ZONE_ID }}
+          replication-timeout: 15000
