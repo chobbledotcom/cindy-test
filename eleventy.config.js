@@ -8,7 +8,8 @@ module.exports = function (eleventyConfig) {
       includes: "_includes",
       data: "_data",
     },
-    templateFormats: ["njk", "html"],
+    templateFormats: ["njk", "html", "md"],
     htmlTemplateEngine: "njk",
+    markdownTemplateEngine: "njk",
   };
 };
