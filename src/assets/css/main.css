@@ -1,10 +1,10 @@
 :root {
-  --ink: #111111;
-  --paper: #f2ede4;
-  --paper-2: #e8e1d2;
-  --bee: #ffb400;
-  --red: #c8381f;
-  --rule: #111111;
+  --ink: #c8b0ff;
+  --paper: #0a0014;
+  --paper-2: #1a0830;
+  --bee: #39ff14;
+  --red: #cc33ff;
+  --rule: #c8b0ff;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,19 +17,19 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Paper grain */
+/* Neon grain */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
-    radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px);
+    radial-gradient(rgba(180,100,255,0.06) 1px, transparent 1px),
+    radial-gradient(rgba(57,255,20,0.03) 1px, transparent 1px);
   background-size: 3px 3px, 7px 7px;
   background-position: 0 0, 1px 2px;
   z-index: 1;
-  mix-blend-mode: multiply;
+  mix-blend-mode: screen;
 }
 
 .frame {
@@ -65,10 +65,12 @@ body::before {
   font-size: clamp(22px, 3.4vw, 34px);
   letter-spacing: -0.02em;
   line-height: 1;
+  text-shadow: 0 0 20px rgba(200, 176, 255, 0.5);
 }
 .masthead .title em {
   font-style: italic;
   color: var(--red);
+  text-shadow: 0 0 20px rgba(204, 51, 255, 0.6);
 }
 .masthead .dateline {
   font-size: 11px;
@@ -117,6 +119,7 @@ body::before {
   left: 0; right: 0; bottom: -1px;
   height: 3px;
   background: var(--red);
+  box-shadow: 0 0 8px var(--red);
 }
 .progress .node.done::after {
   content: "✓";
@@ -126,6 +129,7 @@ body::before {
   font-family: 'Bodoni Moda', serif;
   color: var(--bee);
   font-weight: 900;
+  text-shadow: 0 0 10px var(--bee);
 }
 
 /* Stage */
@@ -146,6 +150,7 @@ body::before {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--red);
+  text-shadow: 0 0 12px rgba(204, 51, 255, 0.6);
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -156,6 +161,7 @@ body::before {
   content: "";
   height: 1px;
   background: var(--red);
+  box-shadow: 0 0 6px var(--red);
   flex: 0 0 24px;
 }
 .kicker::after { flex: 1; }
@@ -167,17 +173,19 @@ body::before {
   line-height: 0.92;
   letter-spacing: -0.035em;
   margin-bottom: 14px;
+  text-shadow: 0 0 40px rgba(200, 176, 255, 0.35);
 }
 .headline em {
   font-style: italic;
   color: var(--red);
+  text-shadow: 0 0 24px rgba(204, 51, 255, 0.7);
 }
 .dek {
   max-width: 640px;
   font-size: 14px;
   line-height: 1.55;
   margin-bottom: 32px;
-  color: #2a2a2a;
+  color: #9b8fcc;
 }
 
 /* Option grid */
@@ -197,7 +205,7 @@ body::before {
   text-align: left;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.18s ease, transform 0.18s ease;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
   color: var(--ink);
   display: flex;
   flex-direction: column;
@@ -205,18 +213,18 @@ body::before {
   min-height: 130px;
 }
 .option:hover {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper-2);
+  box-shadow: inset 0 0 40px rgba(57, 255, 20, 0.07);
 }
-.option:hover .opt-num { color: var(--bee); }
-.option:hover .opt-desc { color: var(--paper-2); }
+.option:hover .opt-num { color: var(--bee); text-shadow: 0 0 10px var(--bee); }
+.option:hover .opt-desc { color: var(--ink); }
 .option .opt-num {
   font-family: 'Bodoni Moda', serif;
   font-style: italic;
   font-weight: 700;
   font-size: 13px;
   color: var(--red);
-  transition: color 0.18s;
+  transition: color 0.18s, text-shadow 0.18s;
 }
 .option .opt-title {
   font-family: 'Bodoni Moda', serif;
@@ -230,7 +238,7 @@ body::before {
   letter-spacing: 0.06em;
   line-height: 1.5;
   margin-top: auto;
-  color: #444;
+  color: #7a6aaa;
   transition: color 0.18s;
 }
 
@@ -283,18 +291,21 @@ body::before {
 }
 .verdict-side {
   padding: 30px 24px 32px;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper-2);
+  color: var(--ink);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  border-left: 1px solid var(--bee);
+  box-shadow: inset -10px 0 50px rgba(57, 255, 20, 0.05);
 }
 .verdict-kicker {
   font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--red);
+  text-shadow: 0 0 10px rgba(204, 51, 255, 0.5);
   margin-bottom: 12px;
 }
 .verdict-name {
@@ -304,10 +315,12 @@ body::before {
   line-height: 0.85;
   letter-spacing: -0.045em;
   margin-bottom: 18px;
+  text-shadow: 0 0 50px rgba(200, 176, 255, 0.4);
 }
 .verdict-name em {
   font-style: italic;
   color: var(--red);
+  text-shadow: 0 0 35px rgba(204, 51, 255, 0.7);
 }
 .verdict-url {
   display: inline-block;
@@ -315,15 +328,17 @@ body::before {
   font-size: 13px;
   letter-spacing: 0.08em;
   text-decoration: none;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
+  color: var(--paper);
+  border: 1.5px solid var(--bee);
   padding: 10px 16px 11px;
-  transition: background 0.18s, color 0.18s;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
   background: var(--bee);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.45);
 }
 .verdict-url:hover {
-  background: var(--ink);
+  background: transparent;
   color: var(--bee);
+  box-shadow: 0 0 32px rgba(57, 255, 20, 0.65);
 }
 .verdict-url .arr { margin-left: 10px; }
 
@@ -335,7 +350,8 @@ body::before {
 }
 .verdict-body p + p { margin-top: 10px; }
 .verdict-body strong {
-  background: var(--bee);
+  background: rgba(57, 255, 20, 0.18);
+  color: var(--bee);
   padding: 1px 4px;
 }
 
@@ -344,6 +360,7 @@ body::before {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--bee);
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
   margin-bottom: 10px;
 }
 .verdict-side ul {
@@ -353,7 +370,7 @@ body::before {
 }
 .verdict-side ul li {
   padding: 6px 0;
-  border-bottom: 1px dashed rgba(242, 237, 228, 0.25);
+  border-bottom: 1px dashed rgba(200, 176, 255, 0.25);
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -363,6 +380,7 @@ body::before {
   font-family: 'Bodoni Moda', serif;
   font-style: italic;
   color: var(--bee);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
 }
 
 .restart-row {
@@ -384,11 +402,13 @@ body::before {
   text-transform: uppercase;
   cursor: pointer;
   color: var(--ink);
-  transition: background 0.18s, color 0.18s;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s;
 }
 .restart-row button:hover {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper-2);
+  color: var(--bee);
+  border-color: var(--bee);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
 }
 
 /* Choice echo */
@@ -396,14 +416,14 @@ body::before {
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #666;
+  color: #6a5a9a;
   margin-bottom: 18px;
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
 }
 .echo span b {
-  color: var(--ink);
+  color: var(--bee);
   font-weight: 600;
   margin-left: 6px;
 }
@@ -412,5 +432,6 @@ body::before {
   .frame { padding: 20px 18px 40px; }
   .verdict-grid { grid-template-columns: 1fr; }
   .verdict-main { border-right: none; border-bottom: 1px solid var(--ink); }
+  .verdict-side { border-left: none; border-top: 1px solid var(--bee); }
   .progress .label { font-size: 9px; }
 }
