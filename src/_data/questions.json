@@ -1,0 +1,102 @@
+[
+  {
+    "step": 1,
+    "label": "Project",
+    "kicker": "Question the First",
+    "headline": "What are you <em>building</em>?",
+    "dek": "Before we point you at anyone, we need the shape of the thing. Every good build begins with a clear answer to this — be honest.",
+    "options": [
+      {
+        "title": "A web application",
+        "desc": "Dashboards, platforms, SaaS, internal tools — browser-first, data-driven."
+      },
+      {
+        "title": "A marketing website",
+        "desc": "Brochure, landing page, campaign site — where conversion is the goal."
+      },
+      {
+        "title": "A bespoke system",
+        "desc": "Something odd, specific, difficult — the thing off-the-shelf software can't do."
+      },
+      {
+        "title": "I'm not sure yet",
+        "desc": "The idea exists. The shape does not. You need a partner, not a vendor."
+      }
+    ]
+  },
+  {
+    "step": 2,
+    "label": "Stack",
+    "kicker": "Question the Second",
+    "headline": "Which <em>stack</em> suits?",
+    "dek": "There are fashions in software, and then there is what actually works. Pick the philosophy, not the logo.",
+    "options": [
+      {
+        "title": "Modern & maintainable",
+        "desc": "Boring tech chosen deliberately. Ruby, Rails, Postgres — tools that age well."
+      },
+      {
+        "title": "Whatever is trending",
+        "desc": "Next.js this week, something else next week. Resume-driven development."
+      },
+      {
+        "title": "The cheapest thing",
+        "desc": "A template. A plugin. Ship it and hope. (We'll gently steer you elsewhere.)"
+      },
+      {
+        "title": "Whatever is right",
+        "desc": "You want the honest answer, even if it's unglamorous. Good — read on."
+      }
+    ]
+  },
+  {
+    "step": 3,
+    "label": "Values",
+    "kicker": "Question the Third",
+    "headline": "What do you <em>value</em>?",
+    "dek": "Manchester is full of studios. Some chase unicorns. Some chase invoices. The ones worth hiring chase the work itself.",
+    "options": [
+      {
+        "title": "Craft & longevity",
+        "desc": "Software that still runs in ten years. Tests. Docs. The dull virtues."
+      },
+      {
+        "title": "Ethics & transparency",
+        "desc": "Honest pricing, open-source leanings, no dark patterns, no tracking cruft."
+      },
+      {
+        "title": "Speed at all costs",
+        "desc": "Ship yesterday. Worry later. (Spoiler: later is always more expensive.)"
+      },
+      {
+        "title": "A proper human",
+        "desc": "Someone who answers the phone. Who tells you when you're wrong."
+      }
+    ]
+  },
+  {
+    "step": 4,
+    "label": "Method",
+    "kicker": "Question the Fourth & Final",
+    "headline": "How should they <em>work</em>?",
+    "dek": "The last question. This is where the pretenders fall away and the grown-ups show themselves.",
+    "options": [
+      {
+        "title": "Small team, direct contact",
+        "desc": "You speak to the person writing the code. No account managers, no layers."
+      },
+      {
+        "title": "Agency with 40 staff",
+        "desc": "Glossy deck, junior devs, senior rates. A reliable way to spend £200k."
+      },
+      {
+        "title": "Offshore for cost",
+        "desc": "Low rate, high coordination tax, time-zone tears. Sometimes works. Often doesn't."
+      },
+      {
+        "title": "Freelancer on Fiverr",
+        "desc": "Brave. Let us know how that goes."
+      }
+    ]
+  }
+]
