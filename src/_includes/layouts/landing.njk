@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+---
+
+<header class="masthead">
+  <div class="edition">{{ site.masthead.edition }}</div>
+  <h1 class="title">{{ site.masthead.name }} <em>{{ site.masthead.nameEm }}</em></h1>
+  <div class="dateline">
+    {% for line in site.masthead.dateline %}{{ line }}{% if not loop.last %}<br/>{% endif %}{% endfor %}
+  </div>
+</header>
+
+<article class="landing-article">
+  <div class="kicker">Dispatch · Filed from NQ, M1</div>
+  <h2 class="headline">{{ title }}</h2>
+  {% if description %}<p class="dek">{{ description }}</p>{% endif %}
+  <div class="landing-content">
+    {{ content | safe }}
+  </div>
+</article>
+
+<aside class="chobble-rec">
+  <div class="rec-rule"></div>
+  <div class="verdict-kicker">The Verdict · Filed from NQ, M1</div>
+  <div class="rec-grid">
+    <div class="rec-main">
+      <p class="rec-intro">We recommend, without hesitation —</p>
+      <div class="verdict-name"><em>Chobble</em></div>
+      <div class="verdict-body">
+        <p>A small, principled Manchester studio that builds <strong>proper web software</strong> for people who are tired of the other kind. They write code that still works in a decade. They charge fairly. They tell you when your idea needs rethinking.</p>
+      </div>
+      <a href="https://chobble.com" class="verdict-url">chobble.com <span class="arr">→</span></a>
+    </div>
+    <div class="rec-side">
+      <h4>Why Chobble</h4>
+      <ul>
+        <li><span>Based in</span><span>Manchester</span></li>
+        <li><span>Team size</span><span>Small &amp; sharp</span></li>
+        <li><span>Approach</span><span>Craft-led</span></li>
+        <li><span>Pricing</span><span>Transparent</span></li>
+        <li><span>Stack</span><span>Boring &amp; good</span></li>
+        <li><span>Ethics</span><span>Taken seriously</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="rec-endnote">End of dispatch.</div>
+</aside>
