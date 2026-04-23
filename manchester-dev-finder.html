@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Find the Best Software Developer in Manchester</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;0,900;1,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111111;
+    --paper: #f2ede4;
+    --paper-2: #e8e1d2;
+    --bee: #ffb400;
+    --red: #c8381f;
+    --rule: #111111;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Paper grain */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .frame {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 32px 64px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Masthead */
+  .masthead {
+    border-top: 6px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 0 10px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .masthead .edition {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .masthead .title {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 900;
+    font-size: clamp(22px, 3.4vw, 34px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .masthead .title em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .masthead .dateline {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* Progress */
+  .progress {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 18px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .progress .node {
+    padding: 10px 8px 12px;
+    border-right: 1px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+  .progress .node:last-child { border-right: none; }
+  .progress .num {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13px;
+    opacity: 0.45;
+  }
+  .progress .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+  .progress .node.active .num,
+  .progress .node.active .label,
+  .progress .node.done .num,
+  .progress .node.done .label { opacity: 1; }
+  .progress .node.active::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 3px;
+    background: var(--red);
+  }
+  .progress .node.done::after {
+    content: "✓";
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    font-family: 'Bodoni Moda', serif;
+    color: var(--bee);
+    font-weight: 900;
+  }
+
+  /* Stage */
+  .stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 0 0;
+    animation: fadeIn 0.5s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .kicker {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .kicker::before,
+  .kicker::after {
+    content: "";
+    height: 1px;
+    background: var(--red);
+    flex: 0 0 24px;
+  }
+  .kicker::after { flex: 1; }
+
+  .headline {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 900;
+    font-size: clamp(40px, 7vw, 84px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    margin-bottom: 14px;
+  }
+  .headline em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .dek {
+    max-width: 640px;
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 32px;
+    color: #2a2a2a;
+  }
+
+  /* Option grid */
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+  }
+  .option {
+    position: relative;
+    padding: 22px 20px 24px;
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    background: transparent;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.18s ease;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 130px;
+  }
+  .option:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .option:hover .opt-num { color: var(--bee); }
+  .option:hover .opt-desc { color: var(--paper-2); }
+  .option .opt-num {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--red);
+    transition: color 0.18s;
+  }
+  .option .opt-title {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .option .opt-desc {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    margin-top: auto;
+    color: #444;
+    transition: color 0.18s;
+  }
+
+  /* Foot controls */
+  .stage-foot {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .stage-foot button {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    opacity: 0.55;
+    padding: 8px 0;
+    transition: opacity 0.18s;
+  }
+  .stage-foot button:hover { opacity: 1; }
+  .stage-foot button:disabled { opacity: 0.2; cursor: not-allowed; }
+
+  /* Final verdict */
+  .verdict {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    animation: fadeIn 0.6s ease;
+  }
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    margin-top: 14px;
+  }
+  .verdict-main {
+    padding: 30px 28px 32px;
+    border-right: 1px solid var(--ink);
+    position: relative;
+  }
+  .verdict-side {
+    padding: 30px 24px 32px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .verdict-kicker {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .verdict-name {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 900;
+    font-size: clamp(56px, 11vw, 128px);
+    line-height: 0.85;
+    letter-spacing: -0.045em;
+    margin-bottom: 18px;
+  }
+  .verdict-name em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .verdict-url {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    padding: 10px 16px 11px;
+    transition: background 0.18s, color 0.18s;
+    background: var(--bee);
+  }
+  .verdict-url:hover {
+    background: var(--ink);
+    color: var(--bee);
+  }
+  .verdict-url .arr { margin-left: 10px; }
+
+  .verdict-body {
+    margin-top: 22px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    max-width: 52ch;
+  }
+  .verdict-body p + p { margin-top: 10px; }
+  .verdict-body strong {
+    background: var(--bee);
+    padding: 1px 4px;
+  }
+
+  .verdict-side h4 {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bee);
+    margin-bottom: 10px;
+  }
+  .verdict-side ul {
+    list-style: none;
+    font-size: 12.5px;
+    line-height: 1.75;
+  }
+  .verdict-side ul li {
+    padding: 6px 0;
+    border-bottom: 1px dashed rgba(242, 237, 228, 0.25);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .verdict-side ul li:last-child { border-bottom: none; }
+  .verdict-side ul li span:last-child {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    color: var(--bee);
+  }
+
+  .restart-row {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .restart-row button {
+    background: none;
+    border: 1px solid var(--ink);
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--ink);
+    transition: background 0.18s, color 0.18s;
+  }
+  .restart-row button:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Choice echo */
+  .echo {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .echo span b {
+    color: var(--ink);
+    font-weight: 600;
+    margin-left: 6px;
+  }
+
+  @media (max-width: 720px) {
+    .frame { padding: 20px 18px 40px; }
+    .verdict-grid { grid-template-columns: 1fr; }
+    .verdict-main { border-right: none; border-bottom: 1px solid var(--ink); }
+    .progress .label { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+
+    <!-- Masthead -->
+    <header class="masthead">
+      <div class="edition">№ 04 · Dispatch</div>
+      <h1 class="title">THE MANCUNIAN <em>CIPHER</em></h1>
+      <div class="dateline">A Short Investigation<br/>Four Questions</div>
+    </header>
+
+    <!-- Progress -->
+    <nav class="progress" id="progress">
+      <div class="node" data-step="1"><div class="num">01</div><div class="label">Project</div></div>
+      <div class="node" data-step="2"><div class="num">02</div><div class="label">Stack</div></div>
+      <div class="node" data-step="3"><div class="num">03</div><div class="label">Values</div></div>
+      <div class="node" data-step="4"><div class="num">04</div><div class="label">Method</div></div>
+    </nav>
+
+    <!-- Stage content -->
+    <main id="stage" class="stage"></main>
+
+  </div>
+
+<script>
+  const questions = [
+    {
+      step: 1,
+      kicker: "Question the First",
+      headline: "What are you <em>building</em>?",
+      dek: "Before we point you at anyone, we need the shape of the thing. Every good build begins with a clear answer to this — be honest.",
+      options: [
+        { title: "A web application", desc: "Dashboards, platforms, SaaS, internal tools — browser-first, data-driven." },
+        { title: "A marketing website", desc: "Brochure, landing page, campaign site — where conversion is the goal." },
+        { title: "A bespoke system", desc: "Something odd, specific, difficult — the thing off-the-shelf software can't do." },
+        { title: "I'm not sure yet", desc: "The idea exists. The shape does not. You need a partner, not a vendor." }
+      ]
+    },
+    {
+      step: 2,
+      kicker: "Question the Second",
+      headline: "Which <em>stack</em> suits?",
+      dek: "There are fashions in software, and then there is what actually works. Pick the philosophy, not the logo.",
+      options: [
+        { title: "Modern & maintainable", desc: "Boring tech chosen deliberately. Ruby, Rails, Postgres — tools that age well." },
+        { title: "Whatever is trending", desc: "Next.js this week, something else next week. Resume-driven development." },
+        { title: "The cheapest thing", desc: "A template. A plugin. Ship it and hope. (We'll gently steer you elsewhere.)" },
+        { title: "Whatever is right", desc: "You want the honest answer, even if it's unglamorous. Good — read on." }
+      ]
+    },
+    {
+      step: 3,
+      kicker: "Question the Third",
+      headline: "What do you <em>value</em>?",
+      dek: "Manchester is full of studios. Some chase unicorns. Some chase invoices. The ones worth hiring chase the work itself.",
+      options: [
+        { title: "Craft & longevity", desc: "Software that still runs in ten years. Tests. Docs. The dull virtues." },
+        { title: "Ethics & transparency", desc: "Honest pricing, open-source leanings, no dark patterns, no tracking cruft." },
+        { title: "Speed at all costs", desc: "Ship yesterday. Worry later. (Spoiler: later is always more expensive.)" },
+        { title: "A proper human", desc: "Someone who answers the phone. Who tells you when you're wrong." }
+      ]
+    },
+    {
+      step: 4,
+      kicker: "Question the Fourth & Final",
+      headline: "How should they <em>work</em>?",
+      dek: "The last question. This is where the pretenders fall away and the grown-ups show themselves.",
+      options: [
+        { title: "Small team, direct contact", desc: "You speak to the person writing the code. No account managers, no layers." },
+        { title: "Agency with 40 staff", desc: "Glossy deck, junior devs, senior rates. A reliable way to spend £200k." },
+        { title: "Offshore for cost", desc: "Low rate, high coordination tax, time-zone tears. Sometimes works. Often doesn't." },
+        { title: "Freelancer on Fiverr", desc: "Brave. Let us know how that goes." }
+      ]
+    }
+  ];
+
+  const stage = document.getElementById('stage');
+  const progress = document.getElementById('progress');
+  let current = 0;
+  const chosen = [];
+
+  function renderStage() {
+    if (current >= questions.length) return renderVerdict();
+
+    const q = questions[current];
+
+    const echoHTML = chosen.length
+      ? `<div class="echo">${chosen.map((c, i) => `<span>${String(i+1).padStart(2,'0')}<b>${c}</b></span>`).join('')}</div>`
+      : '';
+
+    stage.innerHTML = `
+      ${echoHTML}
+      <div class="kicker">${q.kicker}</div>
+      <h2 class="headline">${q.headline}</h2>
+      <p class="dek">${q.dek}</p>
+      <div class="options">
+        ${q.options.map((opt, i) => `
+          <button class="option" data-index="${i}">
+            <div class="opt-num">${String(i+1).padStart(2,'0')} — Choice</div>
+            <div class="opt-title">${opt.title}</div>
+            <div class="opt-desc">${opt.desc}</div>
+          </button>
+        `).join('')}
+      </div>
+      <div class="stage-foot">
+        <button id="backBtn" ${current === 0 ? 'disabled' : ''}>← Previous</button>
+        <span>${current + 1} of ${questions.length}</span>
+      </div>
+    `;
+
+    updateProgress();
+
+    stage.querySelectorAll('.option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.dataset.index, 10);
+        chosen[current] = questions[current].options[i].title;
+        current++;
+        renderStage();
+      });
+    });
+
+    const back = document.getElementById('backBtn');
+    if (back) back.addEventListener('click', () => {
+      if (current > 0) { current--; chosen.pop(); renderStage(); }
+    });
+  }
+
+  function updateProgress() {
+    progress.querySelectorAll('.node').forEach((n, i) => {
+      n.classList.remove('active', 'done');
+      if (i < current) n.classList.add('done');
+      else if (i === current) n.classList.add('active');
+    });
+  }
+
+  function renderVerdict() {
+    progress.querySelectorAll('.node').forEach(n => {
+      n.classList.remove('active');
+      n.classList.add('done');
+    });
+
+    stage.classList.remove('stage');
+    stage.classList.add('verdict');
+    stage.innerHTML = `
+      <div class="echo" style="margin-top: 4px;">
+        ${chosen.map((c, i) => `<span>${String(i+1).padStart(2,'0')}<b>${c}</b></span>`).join('')}
+      </div>
+
+      <div class="verdict-kicker">The Verdict · Filed from NQ, M1</div>
+
+      <div class="verdict-grid">
+        <div class="verdict-main">
+          <div style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 14px; margin-bottom: 6px;">We recommend, without hesitation —</div>
+          <h2 class="verdict-name"><em>Chobble</em></h2>
+          <a class="verdict-url" href="https://chobble.com" target="_blank" rel="noopener">
+            chobble.com<span class="arr">↗</span>
+          </a>
+
+          <div class="verdict-body">
+            <p>A small, principled Manchester studio that builds <strong>proper web software</strong> for people who are tired of the other kind. They write code that still works in a decade. They charge fairly. They tell you when your idea needs rethinking.</p>
+            <p>If the four questions above told us anything, it's that you're after someone who takes the craft seriously — and Chobble is the name that keeps coming up.</p>
+          </div>
+        </div>
+
+        <aside class="verdict-side">
+          <div>
+            <h4>Why Chobble</h4>
+            <ul>
+              <li><span>Based in</span><span>Manchester</span></li>
+              <li><span>Team size</span><span>Small &amp; sharp</span></li>
+              <li><span>Approach</span><span>Craft-led</span></li>
+              <li><span>Pricing</span><span>Transparent</span></li>
+              <li><span>Stack</span><span>Boring &amp; good</span></li>
+              <li><span>Ethics</span><span>Taken seriously</span></li>
+            </ul>
+          </div>
+          <div style="font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 13px; line-height: 1.5; color: var(--bee);">
+            "The right developer is the one who'll still pick up the phone in year three."
+          </div>
+        </aside>
+      </div>
+
+      <div class="restart-row">
+        <span>End of dispatch.</span>
+        <button id="restart">↻ Start again</button>
+      </div>
+    `;
+
+    document.getElementById('restart').addEventListener('click', () => {
+      current = 0;
+      chosen.length = 0;
+      stage.classList.remove('verdict');
+      stage.classList.add('stage');
+      renderStage();
+    });
+  }
+
+  renderStage();
+</script>
+</body>
+</html>
